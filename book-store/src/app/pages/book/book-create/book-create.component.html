@@ -2,18 +2,12 @@
 
 <div style="display: flex; flex-direction: column; row-gap: 0.5em;">
     <div>
-      <input type="text" [(ngModel)]="name" required class="p-mr-2"
-      #nameCodeNgModel = "ngModel"
-      pInputText placeholder="ชื่อหนังสือ"/>
-      <p-message *ngIf="nameCodeNgModel.invalid" severity="error" text="กรอกข้อมูล" styleClass="p-mr-2"></p-message>
+      <input type="text" [(ngModel)]="name" required class="p-mr-2">
     </div>
     <div>
-      <input type="text" [(ngModel)]="price" required class="p-mr-2"
-      #priceCodeNgModel = "ngModel"
-      pInputText placeholder="ราคา"/>
-      <p-message *ngIf="priceCodeNgModel.invalid" severity="error" text="กรอกข้อมูล" styleClass="p-mr-2"></p-message>
+      <input type="text" [(ngModel)]="price" required class="p-mr-2">
     </div>
     <div>
-      <p-button label="บันทึก" (click)="Create()"></p-button>
+      <button label="บันทึก" (click)="Create()">SAVE</button>
     </div>
   </div>

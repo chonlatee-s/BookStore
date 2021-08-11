@@ -7,10 +7,6 @@ import { BookCreateComponent } from './book-create/book-create.component';
 import { FormsModule } from '@angular/forms';
 import { BookUpdateComponent } from './book-update/book-update.component';
 
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button';
-import {MessageModule} from 'primeng/message';
-
 @NgModule({
   declarations: [
     BookListComponent,
@@ -20,10 +16,7 @@ import {MessageModule} from 'primeng/message';
   imports: [
     CommonModule,
     BookRoutingModule,
-    FormsModule,
-    InputTextModule,
-    ButtonModule,
-    MessageModule
+    FormsModule
   ]
 })
 export class BookModule { }
