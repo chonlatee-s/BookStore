@@ -1,0 +1,18 @@
+<b><a [routerLink]="['create']">[ADD]</a> Book-list</b>
+<br><br>
+<table border="1">
+  <tr>
+    <th>BookId</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let book of DataSource">
+    <td>{{ book.bookId }}</td>
+    <td>{{ book.name }}</td>
+    <td>{{ book.price }}</td>
+    <td><a [routerLink]="['/book/update/' + book.uuid]"><button>edit</button></a></td>
+    <td><button (click)="delete(book.uuid)">delete</button></td>
+  </tr>
+</table>
