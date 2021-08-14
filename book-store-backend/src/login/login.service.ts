@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LoginEntity } from './login.entity';
@@ -9,7 +9,9 @@ export class LoginService {
     @InjectRepository(LoginEntity)
     private loinRepository: Repository<LoginEntity>
   ) {}
-  checkLogin(email: string, password: string) {
-    return this.loinRepository.findOne({ email: email, password: password });
+  async checkLogin(email: string, password: string) {
+    const login = await this.loinRepository.findOne({ email: email, password: password });
+    if(!login) throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+    return login
   }
 }
