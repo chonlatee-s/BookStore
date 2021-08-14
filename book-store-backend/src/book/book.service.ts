@@ -8,7 +8,7 @@ import { Book } from './interface/book.interface';
 export class BookService {
   constructor(
     @InjectRepository(BookEntity)
-    private bookRepository: Repository<BookEntity>,
+    private bookRepository: Repository<BookEntity>
   ) {}
 
   async findBook(): Promise<Book[]> {

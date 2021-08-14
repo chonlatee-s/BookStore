@@ -10,9 +10,7 @@ const routes: Routes = [
       { path: 'book', loadChildren: () => import('./pages/book/book.module').then(m => m.BookModule) },
     ]
   },
-
-  // { path: '', component: LayoutMainComponent },
-  // { path: 'book', loadChildren: () => import('./pages/book/book.module').then(m => m.BookModule) }
+  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
 ];
 
 @NgModule({
