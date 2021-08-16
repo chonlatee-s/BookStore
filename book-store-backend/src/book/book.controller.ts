@@ -1,16 +1,35 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, Req, UnauthorizedException } from '@nestjs/common';
 import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './interface/book.interface';
 
+import { Request } from 'express';
+
 @Controller('book')
 export class BookController {
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService
+  ) {}
 
   @Get()
-  async getData(): Promise<Book[]> {
+  async getData(@Req() request: Request): Promise<Book[]> {
     return await this.bookService.findBook();
+    // try {
+    //   if(!request.headers.authorization){
+    //     throw new UnauthorizedException()
+    //   }
+
+    //   const token = request.headers.authorization.split(' ')[1]
+
+    //   // const data = await this.jwtService.verifyAsync(token);
+    //   // console.log(data)
+
+    //   return await this.bookService.findBook();
+    // } catch(e) {
+    //   console.log('dox')
+    //   throw new UnauthorizedException()
+    // }
   }
 
   @Get(':id')
