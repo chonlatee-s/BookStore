@@ -11,8 +11,5 @@ export class LoginService {
   ) {}
   async checkLogin(email: string, password: string) {
     return await this.loinRepository.findOne({ email: email, password: password });
-    // const login = await this.loinRepository.findOne({ email: email, password: password });
-    // if(!login) throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
-    // return login
   }
 }

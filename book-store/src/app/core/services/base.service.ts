@@ -12,7 +12,7 @@ export class BaseService<T, DtoT> {
   }
 
   find(params: Params): Observable<T[]> {
-    return this.http.get<T[]>(this.endpoint, { params });
+    return this.http.get<T[]>(this.endpoint);
   }
 
   create(dto: DtoT | Partial<T>): Observable<T> {

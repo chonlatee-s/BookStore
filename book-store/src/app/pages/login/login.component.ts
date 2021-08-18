@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     await this.authService.loginUser(login).subscribe(
       res => {
         console.log(res)
-        localStorage.setItem('token', res.token)
         this.router.navigate(['/book']);
       },
       err => console.log(err)
