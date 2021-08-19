@@ -5,31 +5,34 @@ import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './interface/book.interface';
 
 import { Request } from 'express';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('book')
 export class BookController {
+  
   constructor(
-    private bookService: BookService
+    private bookService: BookService,
+    private authService: AuthService
   ) {}
 
   @Get()
   async getData(@Req() request: Request): Promise<Book[]> {
-    return await this.bookService.findBook();
-    // try {
-    //   if(!request.headers.authorization){
-    //     throw new UnauthorizedException()
-    //   }
 
-    //   const token = request.headers.authorization.split(' ')[1]
+    try {
+      if(!request.headers.authorization){
+        throw new UnauthorizedException()
+      }
 
-    //   // const data = await this.jwtService.verifyAsync(token);
-    //   // console.log(data)
+      const token = request.headers.authorization.split(' ')[1]
+      const data = await this.authService.verifyToken(token);
 
-    //   return await this.bookService.findBook();
-    // } catch(e) {
-    //   console.log('dox')
-    //   throw new UnauthorizedException()
-    // }
+      if(data) return await this.bookService.findBook();
+      else throw new UnauthorizedException()
+
+    } catch(e) {
+      throw new UnauthorizedException()
+    }
+
   }
 
   @Get(':id')
